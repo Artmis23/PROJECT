@@ -64,6 +64,10 @@ public class ViewHistoryItemOrder extends AppCompatActivity {
         ViewRestaurants.setOnClickListener(v -> {
             Intent intent  = new Intent(this, FoodRestaurantActivity.class);
             intent.putExtra("name", nameRes);
+            Bundle bundle = getIntent().getExtras();
+            if (bundle != null) {
+                intent.putExtras(bundle);
+            }
             startActivity(intent);
         });
 

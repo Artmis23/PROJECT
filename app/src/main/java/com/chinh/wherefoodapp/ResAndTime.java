@@ -7,16 +7,36 @@ import java.util.List;
 public class ResAndTime {
 
     public String key, restaurant, timeOrder;
+    public double lat, lng;
     public List<CartModel> listFood;
 
-    public ResAndTime(String key, String restaurant, String timeOrder, List<CartModel> listFood) {
+    public ResAndTime(String key, String restaurant, String timeOrder, List<CartModel> listFood,
+                      double lat, double lng) {
         this.key = key;
         this.restaurant = restaurant;
         this.timeOrder = timeOrder;
         this.listFood = listFood;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public ResAndTime() {
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 
     public String getKey() {

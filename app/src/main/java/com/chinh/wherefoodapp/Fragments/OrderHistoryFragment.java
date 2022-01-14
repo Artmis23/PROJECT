@@ -42,7 +42,7 @@ public class OrderHistoryFragment extends Fragment implements OrderHistoryToDeta
     private FirebaseAuth firebaseAuth;
     private ArrayList<ResAndTime> resAndTimes;
     private FirebaseRecyclerAdapter<String, OrderHistoryFragment.ViewHolder> firebaseRecyclerAdapter;
-    private OrderHistoryToDetail orderHistoryToDetail;
+    private OrderHistoryToDetail orderHistoryToDetail ;
     private ArrayList<String> SavedKeyListFood;
 
     @Override
@@ -131,11 +131,16 @@ public class OrderHistoryFragment extends Fragment implements OrderHistoryToDeta
 
     @Override
     public void onViewOrder(ResAndTime resAndTime) {
-
+        double current_lat=10.803625;
+        double current_lng=106.638352;
         Intent fragmentToViewHistory  = new Intent(requireContext(), ViewHistoryItemOrder.class);
         fragmentToViewHistory.putExtra("restaurant", resAndTime.restaurant);
         fragmentToViewHistory.putExtra("timeOrder", resAndTime.timeOrder);
         fragmentToViewHistory.putExtra("key", resAndTime.key);
+        fragmentToViewHistory.putExtra("lat", resAndTime.lat);
+        fragmentToViewHistory.putExtra("lng", resAndTime.lng);
+        fragmentToViewHistory.putExtra("current_lat", current_lat);
+        fragmentToViewHistory.putExtra("current_lng", current_lng);
 
         startActivity(fragmentToViewHistory);
 

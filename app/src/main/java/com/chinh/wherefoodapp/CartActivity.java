@@ -119,15 +119,19 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
             DatabaseReference myRef = database.getReference("History");
             String key =  myRef.push().getKey();
 
-            ResAndTime resandTime = new ResAndTime(key, nameRes, getTimeNow(),cartModels);
+            Intent intent = getIntent();
+            double lat = intent.getDoubleExtra("lat", 0);
+            double lng = intent.getDoubleExtra("lng", 0);
+            Log.d("Test", String.valueOf(lat) + String.valueOf(lng));
+            ResAndTime resandTime = new ResAndTime(key, nameRes, getTimeNow(),cartModels,lat,lng);
             myRef.child(key).setValue(resandTime,  new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-
                     Intent intent = new Intent(CartActivity.this, MapsActivity.class);
                     Bundle bundle = getIntent().getExtras();
-                    intent.putExtras(bundle);
-
+                    if (bundle != null) {
+                        intent.putExtras(bundle);
+                    };
                     saveUserHistory(key);
                     FirebaseDatabase.getInstance()
                             .getReference("Cart")
