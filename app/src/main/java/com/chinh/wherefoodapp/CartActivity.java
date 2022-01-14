@@ -64,6 +64,7 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
     private ActivityMainBinding activityMainBinding;
     private ToolbarLayoutBinding toolbarLayoutBinding;
     private String nameRes;
+    private TextView ifname, ifphone, ifmail, iftime;
     private ArrayList<String> userSavedHistoryId;
     private FirebaseAuth firebaseAuth;
     private Bundle savedInstanceState;
@@ -100,7 +101,36 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
         initUI();
         loadCartFromFirebase();
         getUserSavedLocations();
+        ifname = findViewById(R.id.inforName);
+        ifphone = findViewById(R.id.inforPhone);
+        ifmail = findViewById(R.id.inforEmail);
+        iftime = findViewById(R.id.inforTime);
+        getUserData();
 
+    }
+
+    private void getUserData() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                .child(firebaseAuth.getUid());
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()) {
+
+                    User userModel = snapshot.getValue(User.class);
+                    ifname.setText(userModel.getUsername());
+                    ifphone.setText(userModel.getPhone());
+                    ifmail.setText(userModel.getEmail());
+                    iftime.setText(getTimeNow());
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
     }
 
 
