@@ -121,9 +121,9 @@ public class RegisterApp extends AppCompatActivity implements View.OnClickListen
             reg_email.requestFocus();
             return;
         }
-        if (pass.length() < 6)
+        if (pass.length() < 8)
         {
-            reg_pass.setError("Min pass length should be 6 characters!");
+            reg_pass.setError("Min pass length should be 8 characters!");
             reg_pass.requestFocus();
             return;
         }
@@ -152,7 +152,7 @@ public class RegisterApp extends AppCompatActivity implements View.OnClickListen
 
                                             Toast.makeText(RegisterApp.this,"User has been registered successfully, please verify your email!",Toast.LENGTH_LONG).show();
 
-                                            Intent intent = new Intent(RegisterApp.this, MainActivity.class);
+                                            Intent intent = new Intent(RegisterApp.this, Login.class);
 
                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
                                                     | Intent.FLAG_ACTIVITY_NEW_TASK);

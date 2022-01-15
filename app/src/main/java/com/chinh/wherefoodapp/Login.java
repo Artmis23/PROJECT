@@ -90,9 +90,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             edt_email.requestFocus();
             return;
         }
-        if (pass.length() < 6)
+        if (pass.length() < 8)
         {
-            edt_pass.setError("Min pass length should be 6 characters!");
+            edt_pass.setError("Min pass length should be 8 characters!");
             edt_pass.requestFocus();
             return;
         }
